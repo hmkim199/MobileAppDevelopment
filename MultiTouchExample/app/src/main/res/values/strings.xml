@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MultiTouchExample</string>
+    <string name="text1">First Text</string>
+    <string name="text2">Second Text</string>
+</resources>
