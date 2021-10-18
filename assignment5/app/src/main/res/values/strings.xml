@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">assignment5</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_view1">Enter Text</string>
+    <string name="change_text">SEND</string>
+    <string name="second_fragment">Fragment Two</string>
+</resources>
