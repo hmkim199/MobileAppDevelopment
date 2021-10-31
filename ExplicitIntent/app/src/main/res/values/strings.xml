@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ExplicitIntent</string>
+    <string name="textview1">Text View 1</string>
+    <string name="send_text">SEND TEXT</string>
 </resources>
