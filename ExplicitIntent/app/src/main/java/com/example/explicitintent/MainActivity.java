@@ -2,6 +2,7 @@ package com.example.explicitintent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,5 +18,13 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+    }
+
+    public void sendText(View view){
+        Intent intent = new Intent(this, SecondActivity.class);
+
+        String myString = binding.editText1.getText().toString();
+        intent.putExtra("qString", myString);
+        startActivity(intent);
     }
 }
