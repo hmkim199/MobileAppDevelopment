@@ -2,6 +2,7 @@ package com.example.explicitintent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -26,5 +27,20 @@ public class SecondActivity extends AppCompatActivity {
 
         String qString = extras.getString("qString");
         binding.textView2.setText(qString);
+    }
+
+    public void returnText(View view){
+        finish();
+    }
+
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+
+        String returnString = binding.editText2.getText().toString();
+        data.putExtra("returnData", returnString);
+
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 }
