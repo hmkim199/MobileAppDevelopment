@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SQL Test</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="director">Director</string>
+    <string name="released_year">Released Year</string>
+    <string name="init">INIT</string>
+    <string name="insert">INSERT</string>
+    <string name="search">SEARCH</string>
+</resources>
