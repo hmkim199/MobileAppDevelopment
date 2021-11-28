@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ShowMap</string>
+    <string name="show_my_location">Show My Location</string>
+</resources>
