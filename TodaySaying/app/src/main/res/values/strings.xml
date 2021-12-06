@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TodaySaying</string>
+    <string name="random_button">오늘의 문구는?</string>
+    <string name="add_photo">+사진</string>
+    <string name="add_sentence">+문구</string>
+    <string name="click">위 버튼을 클릭하세요!</string>
+</resources>
