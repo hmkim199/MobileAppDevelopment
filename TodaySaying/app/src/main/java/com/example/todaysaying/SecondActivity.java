@@ -62,7 +62,6 @@ public class SecondActivity extends AppCompatActivity {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.putExtra("CallType", 0);
                 resultLauncher.launch(intent);
-                //startActivityForResult(intent, 0);
             }
         });
     }

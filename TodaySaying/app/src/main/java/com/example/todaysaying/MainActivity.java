@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private Boolean isFabOpen = false;
     private FloatingActionButton fab1;
+    private FloatingActionButton deleteFab;
     private Button randomButton;
 
     @Override
@@ -38,13 +39,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
         setTitle("오늘의 문구");
         fab1 = (FloatingActionButton) findViewById(R.id.fab1);
-
         fab1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                changeToDefaultSentence("");
                 Intent intent = new Intent(getApplicationContext(),SecondActivity.class);
                 startActivity(intent);//액티비티 띄우기
-                initializeDB(view);
+                initializeDB(view, false);
+            }
+        });
+
+        deleteFab = (FloatingActionButton) findViewById(R.id.deleteFab);
+        deleteFab.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                changeToDefaultSentence("");
+                initializeDB(view, true);
+                Toast.makeText(getApplicationContext(), "전체 데이터가 삭제되었습니다.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -57,12 +68,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void initializeDB(View view){
+    public void initializeDB(View view, Boolean hasToUpgrade){
         myDBHelper myDBHelper = new myDBHelper(this);
         SQLiteDatabase sqlDB = myDBHelper.getWritableDatabase();
-        //myDBHelper.onUpgrade(sqlDB, 1, 2);
+        if(hasToUpgrade){
+            myDBHelper.onUpgrade(sqlDB, 1, 2);
+        }
         sqlDB.close();
-        Toast.makeText(getApplicationContext(), "Initialized", Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), "Initialized", Toast.LENGTH_LONG).show();
     }
 
     public void searchDBOne(View view){
@@ -90,21 +103,25 @@ public class MainActivity extends AppCompatActivity {
         cursor.moveToFirst();
 
         if(cursor.getString(2) != null){
-            System.out.println("이미지뷰!!!!!!!!!!!!!!!!!!!!!!");
+            // 데이터 이미지 넘기기
+            //System.out.println("이미지뷰!!!!!!!!!!!!!!!!!!!!!!");
             binding.textView.setVisibility(View.INVISIBLE);
             binding.imageView.setVisibility(View.VISIBLE);
             Uri uri = Uri.parse(cursor.getString(2));
             Glide.with(getApplicationContext()).load(uri).override(500, 500).into(binding.imageView);
-            // 데이터 이미지 넘기기
         }
         else if(cursor.getString(1) != null){
-            binding.textView.setVisibility(View.VISIBLE);
-            binding.imageView.setVisibility(View.INVISIBLE);
-            binding.textView.setText(cursor.getString(1));
             // 데이터 글 넘기기
+            changeToDefaultSentence(cursor.getString(1));
         }
 
         cursor.close();
         sqlDB.close();
+    }
+
+    private void changeToDefaultSentence(String str){
+        binding.textView.setVisibility(View.VISIBLE);
+        binding.imageView.setVisibility(View.INVISIBLE);
+        binding.textView.setText(str);
     }
 }
